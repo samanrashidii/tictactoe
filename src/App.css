@@ -1,3 +1,37 @@
+html{
+  font-size: 16px;
+}
+
+*{
+  box-sizing: border-box;
+}
+
 body{
+  padding: 2rem;
   background-color: #282c34;
+}
+
+button{
+  cursor: pointer;
+}
+
+.App{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.game-board{
+  display: flex;
+  flex-wrap: wrap;
+  width: 150px;
+}
+
+.game-board .square{
+  flex: 0 0 33.3333%;
+}
+
+.square{
+  width: 50px;
+  height: 50px;
 }
