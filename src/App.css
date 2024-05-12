@@ -22,16 +22,31 @@ button{
 }
 
 .game-board{
-  display: flex;
-  flex-wrap: wrap;
   width: 150px;
 }
 
-.game-board .square{
+.board{
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.board .square{
   flex: 0 0 33.3333%;
 }
 
 .square{
   width: 50px;
   height: 50px;
+}
+
+.panel{
+  color: #ffffff;
+  padding: 10px 0;
+}
+
+.reset-button{
+  width: 100%;
+  padding: 10px 0;
+  margin-top: 10px;
 }
