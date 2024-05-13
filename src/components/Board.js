@@ -1,14 +1,20 @@
 import Square from './Square';
-import { useState } from 'react';
 
-export default function Board () {
-    const [xIsNext, setXIsNext] = useState(true);
-    const [squares, setSquares] = useState(Array(9).fill(null))
-    const [history, setHistory] = useState([])
-    const currentPlayer = `Player: ${xIsNext ? 'X' : 'O'}`;
+export default function Board ({xIsNext, squares, gameIsTie, onPlay}) {
+
+    const winner = calculateWinner(squares);
+    let status = 'Next player: ' + (xIsNext ? 'X' : 'O')
 
     const handleClick = function (i) {
-        if (squares[i] || calculateWinner(squares)) {
+        
+        if (winner) {
+            status = 'Winner is : ' + winner;
+        }
+        if (gameIsTie) {
+            status = 'Game is Tie';
+        }
+
+        if (squares[i] || winner) {
             return;
         }
         const newSquares = squares.slice();
@@ -17,16 +23,7 @@ export default function Board () {
         } else {
             newSquares[i] = 'O';
         }
-        setSquares(newSquares);
-        if (calculateWinner(newSquares)) {
-            alert(`Winner is ${xIsNext ? 'X' : 'O'}`)
-        } else {
-            setXIsNext(!xIsNext);
-        }
-    }
-
-    const resetBoard = function () {
-        setSquares(Array(9).fill(null));
+        onPlay(newSquares);
     }
 
     function calculateWinner (squares) {
@@ -50,29 +47,19 @@ export default function Board () {
       }
 
     return (
-      <div className="game-board">
-        <div
-            className="panel"
-        >
-            {currentPlayer}
-        </div>
-        <div
-            className="board"
-        >
-            {squares.map((square, index) => (
-                <Square
-                    key={index}
-                    value={square}
-                    onSquareClick={() => handleClick(index)}
-                />
-            ))}
-        </div>
-        <button
-            className="reset-button"
-            onClick={resetBoard}
-        >
-            Reset
-        </button>
-      </div>
+        <>
+            <div className="status panel">{status}</div>
+            <div
+                className="board"
+            >
+                {squares.map((square, index) => (
+                    <Square
+                        key={index}
+                        value={square}
+                        onSquareClick={() => handleClick(index)}
+                    />
+                ))}
+            </div>
+        </>
     );
 };

@@ -25,6 +25,10 @@ button{
   width: 150px;
 }
 
+.game{
+  display: flex;
+}
+
 .board{
   display: flex;
   flex-wrap: wrap;
@@ -49,4 +53,8 @@ button{
   width: 100%;
   padding: 10px 0;
   margin-top: 10px;
+}
+
+.game-info{
+  color: #ffffff;
 }
