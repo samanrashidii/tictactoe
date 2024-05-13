@@ -1,0 +1,60 @@
+html{
+  font-size: 16px;
+}
+
+*{
+  box-sizing: border-box;
+}
+
+body{
+  padding: 2rem;
+  background-color: #282c34;
+}
+
+button{
+  cursor: pointer;
+}
+
+.App{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.game-board{
+  width: 150px;
+}
+
+.game{
+  display: flex;
+}
+
+.board{
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.board .square{
+  flex: 0 0 33.3333%;
+}
+
+.square{
+  width: 50px;
+  height: 50px;
+}
+
+.panel{
+  color: #ffffff;
+  padding: 10px 0;
+}
+
+.reset-button{
+  width: 100%;
+  padding: 10px 0;
+  margin-top: 10px;
+}
+
+.game-info{
+  color: #ffffff;
+}
