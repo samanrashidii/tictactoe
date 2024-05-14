@@ -1,20 +1,11 @@
 import Square from './Square';
 
 export default function Board ({xIsNext, squares, gameIsTie, onPlay}) {
-
-    const winner = calculateWinner(squares);
-    let status = 'Next player: ' + (xIsNext ? 'X' : 'O')
+    let status;
 
     const handleClick = function (i) {
-        
-        if (winner) {
-            status = 'Winner is : ' + winner;
-        }
-        if (gameIsTie) {
-            status = 'Game is Tie';
-        }
 
-        if (squares[i] || winner) {
+        if (squares[i] || calculateWinner(squares)) {
             return;
         }
         const newSquares = squares.slice();
@@ -24,6 +15,16 @@ export default function Board ({xIsNext, squares, gameIsTie, onPlay}) {
             newSquares[i] = 'O';
         }
         onPlay(newSquares);
+    }
+
+    const winner = calculateWinner(squares);
+    status = 'Next player: ' + (xIsNext ? 'X' : 'O');
+    
+    if (winner) {
+        status = 'Winner is : ' + winner;
+    }
+    if (gameIsTie) {
+        status = 'Game is Tie';
     }
 
     function calculateWinner (squares) {
